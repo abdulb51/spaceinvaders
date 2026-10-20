@@ -1,16 +1,26 @@
 use macroquad::prelude::*;
 
 use crate::custom::player::Player;
+use crate::ui::text_button::TextButton;
 
 pub async fn run() -> String {
 
 
 
-
+let btn_exit = TextButton::new(
+        0.0,
+            0.0,
+        50.0,
+        50.0,
+        "X",
+        RED,
+        BLACK,
+        50
+    );
 
     let mut player = Player::new(
-        "assets/subaru.png",
-"assets/subaruflip.png",
+        "assets/ship.png",
+"assets/shipboost.png",
         55.0,
         405.0,
         150.0,
@@ -19,9 +29,6 @@ pub async fn run() -> String {
         1.0,
         0.0,
         5.0,
-        0.0,
-        0,
-        0,
     ).await;
 
 
@@ -29,10 +36,20 @@ pub async fn run() -> String {
         clear_background(WHITE);
         draw_text("game", 20.0, 40.0, 30.0, WHITE);
 
-        if is_key_pressed(KeyCode::Space) {
+player.keypress();
+player.move_player();
+
+
+
+        if is_key_pressed(KeyCode::R) {
             return "win".to_string();
         }
 
+if btn_exit.click() {
+  return "main".to_string();
+        }
+
+player.get_image().draw();
         next_frame().await;
     }
 }

@@ -12,3 +12,4 @@ pub mod grid;
 */
 // Add modules below
 pub mod player;
+pub mod bullet;

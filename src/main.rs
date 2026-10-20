@@ -15,6 +15,7 @@ mod lose;
 
 
 use macroquad::prelude::*;
+use crate::utils::preload_image::TextureManager;
 
 /// Set up window settings before the app runs
 fn window_conf() -> Conf {
@@ -32,8 +33,21 @@ fn window_conf() -> Conf {
 
 #[macroquad::main(window_conf)]
 async fn main() {
+    
+     let tm = TextureManager::new();
+  tm.preload_with_loading_screen(&
+    ["assets/ship.png",
+  "assets/shipboost.png",
+   "assets/evil.png",
+   "assets/evilb.png"],
+    None, None).await;
+
+
+    
     let mut current_screen = "start".to_string();
     let mut last_switch = get_time() - 0.02;
+
+ 
 
     loop {
         if get_time() - last_switch > 0.01 {
