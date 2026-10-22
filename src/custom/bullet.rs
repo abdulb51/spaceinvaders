@@ -2,17 +2,15 @@ use crate::ui::still_image::StillImage;
 use macroquad::prelude::*;
 use macroquad::input::KeyCode;
 pub struct Bullet {
-    image: StillImage,
     shootspot: StillImage,
     projectile: StillImage,
-    move_dir: Vec2,
+   pub move_dir: Vec2,
     speed: f32,
   pub  shootbtn: KeyCode,
 }
 
 impl Bullet {
     pub async fn new(
-        image: &str,
         shootspot: &str,
         projectile: &str,
         x: f32,
@@ -23,13 +21,12 @@ impl Bullet {
         speed: f32,
         shootbtn: KeyCode,
     ) -> Self {
-        let image = StillImage::new(image, width, height, x, y, stretch, 1.0).await;
-        let shootspot = StillImage::new(shootspot, 20.0, 20.0, x, y, false, 1.0).await;
+        // let shootspot = StillImage::new(shootspot, 20.0, 20.0, x, y, false, 1.0).await;
         let projectile = StillImage::new(projectile, width, height, x, y, stretch, 1.0).await;
 
         Bullet {
-            image,
-            shootspot,
+            
+            shootspot: shootspot,
             projectile,
             move_dir: Vec2::new(0.0, 0.0),
             speed: speed,
@@ -41,25 +38,23 @@ impl Bullet {
     
     
     pub fn get_image(&self) -> &StillImage {
-        &self.image
+        &self.projectile
     }
 
 pub fn get_speed(&self) -> f32 {
         self.speed
     }
-
-    pub fn 
-
+pub fn shoot(&self) {  {
     
-
-
-
-
-
-
-
-
+      if is_key_pressed (self.shootbtn) {
+self.move_dir = vec2(0.0, -1.0);
+    }
 }
 
 
 
+ }
+
+
+
+ }

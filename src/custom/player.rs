@@ -1,4 +1,4 @@
-use crate::ui::still_image::StillImage;
+use crate::ui::still_image::{self, StillImage};
 use macroquad::input::KeyCode;
 use macroquad::prelude::*;
 
@@ -8,10 +8,7 @@ boostimage: StillImage,
     pub speed: f32,
     pub move_dir: Vec2,
     pub old_pos: Vec2,
-    pub damage: f32,
     pub health: f32,
-    level: i32,
-    xp: i32,
 }
 
 impl Player {
@@ -39,6 +36,10 @@ impl Player {
             health: health,
            
         }
+    }
+
+pub fn image_draw (&self) -> &StillImage {
+       &self.image
     }
 
     pub fn get_image(&self) -> &StillImage {
@@ -83,11 +84,11 @@ if self.move_dir == vec2(0.0, 0.0) {
     self.image.set_angle(0.0);
 }
         // if self.move_dir == vec2(0.0, 0.0) {
-        //     self.image = self.image();
+        //     self.image_draw() = self.get_image();
         // }
         
         // else if self.move_dir > vec2(0.0, 0.0) {
-        //     self.image = self.boostimage();
+        //     self.image_draw() = self.get_boostimage();
         // }
 
         if self.move_dir.length() > 0.0 {
@@ -119,7 +120,5 @@ if self.move_dir == vec2(0.0, 0.0) {
 
  
     
-
-
 
 }

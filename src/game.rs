@@ -2,11 +2,14 @@ use macroquad::prelude::*;
 
 use crate::custom::player::Player;
 use crate::ui::text_button::TextButton;
-
+use crate::custom::bullet::Bullet;
+use crate::custom::projectile::projectile;
 pub async fn run() -> String {
 
 
 
+
+    
 let btn_exit = TextButton::new(
         0.0,
             0.0,
@@ -28,9 +31,20 @@ let btn_exit = TextButton::new(
         true,
         1.0,
         0.0,
-        5.0,
+        5.0
     ).await;
 
+let mut bullet = Bullet::new(
+    "assets/ship.png",
+    "assets/bullet.png",
+    0.0,
+    4.0,
+    10.0,
+    10.0,
+    false,
+    4.0,
+    KeyCode::Space
+).await;
 
     loop {
         clear_background(WHITE);
